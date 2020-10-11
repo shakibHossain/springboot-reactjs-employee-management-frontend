@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import EmployeeService from "../services/EmployeeService";
 
 export default class CreateEmployeeComponent extends Component {
   constructor(props) {
@@ -35,21 +36,24 @@ export default class CreateEmployeeComponent extends Component {
       lastName: this.state.lastName,
       emailId: this.state.emailId,
     };
-    console.log("employee => " + JSON.stringify(employee));
+
+    EmployeeService.createEmployee(employee).then((res) => {
+      this.props.history.push("./employees");
+    });
   };
 
-  cancel(){
-    this.props.history.push('./employees');
+  cancel() {
+    this.props.history.push("./employees");
   }
 
   render() {
     return (
       <div>
         <div className="container">
-          <br/>
+          <br />
           <div className="row">
             <div className="card col-md-6 offset-md-3">
-              <br/>
+              <br />
               <h3 className="text-center">Add Employee</h3>
               <div className="card-body">
                 <form action="">
